@@ -48,13 +48,13 @@ The binary `mi_quality` label (high/low) reflects expert annotator rating of the
 
 ### 2.2 Feature Extraction Pipeline
 
-Session-level features are extracted by aggregating utterance-level statistics within `transcript_id`:
+Session-level features are extracted by aggregating utterance-level statistics within \texttt{transcript\_id}:
 
 **Cohesion-relevant features**
 
 | Feature | Derivation |
 |---|---|
-| `empathy_rate` | `reflection_exists == True` rate (therapist utterances) |
+| \texttt{empathy\_rate} | \texttt{reflection\_exists == True} rate (therapist utterances) |
 | `agreement_rate` | `client_talk_type == 'change'` rate (client utterances) |
 | `sent_mean` | Mean VADER compound sentiment across all utterances |
 | `wc_balance` | `min(n_therapist, n_client) / max(n_therapist, n_client)` |
