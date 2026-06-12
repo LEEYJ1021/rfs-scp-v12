@@ -252,6 +252,8 @@ rfs-scp-v12/
 ├── README.md                        ← This file
 ├── requirements.txt                 ← Python dependencies
 ├── environment.yml                  ← Conda environment spec
+├── Diagramm_RQ1.png
+├── Diagramm_RQ2-5.png
 │
 ├── data/
 │   ├── README.md                    ← Data access instructions
