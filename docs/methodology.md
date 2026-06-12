@@ -160,19 +160,29 @@ The post-burn-in chain ($N = 3{,}750$ samples after 25% burn-in) provides:
 
 ### 5.1 GroupKFold Cross-Validation
 
-To prevent data leakage — transcripts spanning many utterances could otherwise appear in both train and validation splits — all logistic regression evaluation uses \texttt{GroupKFold(n\_splits=10)} with \texttt{groups = transcript\_id}. This ensures no session appears in both train and validation partitions within any fold.
+To prevent data leakage --- transcripts spanning many utterances could otherwise appear in both train and validation splits --- all logistic regression evaluation uses \texttt{GroupKFold(n\_splits=10)} with \texttt{groups = transcript\_id}. This ensures no session appears in both train and validation partitions within any fold.
 
 ### 5.2 Repeated StratifiedKFold
 
-For stability estimation (standard deviation of AUC across fold configurations), `RepeatedStratifiedKFold(n_splits=5, n_repeats=5)` is used separately. This ignores group structure but provides AUC variance across 25 random splits.
+For stability estimation (standard deviation of AUC across fold configurations), \texttt{RepeatedStratifiedKFold(n\_splits=5, n\_repeats=5)} is used separately. This ignores group structure but provides AUC variance across 25 random splits.
 
 ### 5.3 Counterfactual Analysis (V12-H)
 
-For each Low-MI session, we compute the minimum standardised increase $\Delta$ in `empathy_rate` required to flip the logistic model's prediction from Low-MI to High-MI:
+For each Low-MI session, we compute the minimum standardised increase $\Delta$ in \texttt{empathy\_rate} required to flip the logistic model's prediction from Low-MI to High-MI:
 
-$$\Delta^* = \min \left\{ \delta \geq 0 : \hat{p}\left(x + \delta \cdot e_{\text{empathy}}\right) \geq 0.5 \right\}$$
+$$
+\Delta^*
+=
+\min \left\{
+\delta \geq 0 :
+\hat{p}\left(
+x + \delta \cdot e_{\mathrm{empathy}}
+\right)
+\geq 0.5
+\right\}
+$$
 
-where $e_{\text{empathy}}$ is the unit vector for the `empathy_rate` feature. The search uses a 300-point grid over $[0, 3\sigma]$.
+where $e_{\mathrm{empathy}}$ is the unit vector for the \texttt{empathy\_rate} feature. The search uses a 300-point grid over $[0, 3\sigma]$.
 
 ---
 
@@ -295,9 +305,21 @@ The maximum ICC observed (0.280, qwen2.5:7b) is below the "fair agreement" thres
 
 ### 10.1 Bayesian Weight Update
 
-Following MCMC optimisation, the RFS controller's empathy weight is updated from the baseline (w = 0.240) to the posterior mean (w = 0.925). This substantially increases the controller's sensitivity to empathy dynamics in computing `empathy_intensity`:
+Following MCMC optimisation, the RFS controller's empathy weight is updated from the baseline ($w = 0.240$) to the posterior mean ($w = 0.925$). This substantially increases the controller's sensitivity to empathy dynamics in computing \texttt{empathy\_intensity}:
 
-$$I_\text{empathy} = \text{clip}\left(w_\text{emp} \cdot r_\text{emp} + w_\text{agr} \cdot r_\text{agr}, 0, 1\right) \times \text{zone\_factor}$$
+$$
+I_{\mathrm{empathy}}
+=
+\mathrm{clip}\left(
+w_{\mathrm{emp}} \cdot r_{\mathrm{emp}}
++
+w_{\mathrm{agr}} \cdot r_{\mathrm{agr}},
+0,
+1
+\right)
+\times
+\mathrm{zone\_factor}
+$$
 
 ### 10.2 Intervention Scheduler
 
