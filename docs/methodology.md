@@ -44,7 +44,7 @@ All experiments use the **AnnoMI** corpus (Wu et al., 2022):
 - Session-level class balance: High-MI = 110 (82.7%), Low-MI = 23 (17.3%)
 - 44 unique counselling topics
 
-The binary `mi_quality` label (high/low) reflects expert annotator rating of the therapist's overall MI adherence for the session, and serves as the ground-truth criterion for all external validity analyses.
+The binary \texttt{mi\_quality} label (high/low) reflects expert annotator rating of the therapist's overall MI adherence for the session, and serves as the ground-truth criterion for all external validity analyses.
 
 ### 2.2 Feature Extraction Pipeline
 
@@ -112,7 +112,7 @@ $$\text{flexibility} = 100 \times \sum_{k} w_k^{\text{flex}} \cdot f_k$$
 | question | 0.25 | Open-ended questioning opens relational space |
 | sent_variance | 0.20 | Moderate emotional variability signals openness |
 | novelty | 0.13 | Lexical novelty (TTR) as idea diversity proxy |
-| anti_rigidity | 0.20 | $1 / (1 + e^{3 \cdot \text{lag1\_autocorr}})$ |
+| anti\_rigidity | $1 / (1 + e^{3 \cdot \mathrm{lag1\_autocorr}})$ |
 
 ### 3.3 Normalisation
 
@@ -244,7 +244,7 @@ For each feature group, temporal segments are identified by recursively splittin
 
 **Step 3 — Antithetic permutation SHAP over players**
 
-Players = {(group g, segment s)} are subjected to antithetic permutation SHAP attribution. The baseline is the session-mean feature vector broadcast to the sequence length.
+Players $= \{(\mathrm{group}\ g,\ \mathrm{segment}\ s)\}$ are subjected to antithetic permutation SHAP attribution. The baseline is the session-mean feature vector broadcast to the sequence length.
 
 **Efficiency axiom**: $\sum_i \phi_i = f(x) - f(\text{baseline})$. Empirical efficiency error reported as mean ± std over sessions.
 
