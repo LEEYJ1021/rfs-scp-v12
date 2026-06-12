@@ -71,7 +71,7 @@ Session-level features are extracted by aggregating utterance-level statistics w
 | `question_rate` | `question_exists == True` rate (therapist utterances) |
 | `sent_std` | Standard deviation of session-wide sentiment |
 | `mean_ttr` | Mean type-token ratio per utterance |
-| `lag1_autocorr` | Pearson r(sent_t, sent_{t+1}) over session |
+| \texttt{lag1\_autocorr} | Pearson $r(sent_t, sent_{t+1})$ over session |
 
 **Temporal dynamics (V12-G)**
 
