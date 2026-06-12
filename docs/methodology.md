@@ -160,7 +160,7 @@ The post-burn-in chain ($N = 3{,}750$ samples after 25% burn-in) provides:
 
 ### 5.1 GroupKFold Cross-Validation
 
-To prevent data leakage — transcripts spanning many utterances could otherwise appear in both train and validation splits — all logistic regression evaluation uses `GroupKFold(n_splits=10)` with `groups = transcript_id`. This ensures no session appears in both train and validation partitions within any fold.
+To prevent data leakage — transcripts spanning many utterances could otherwise appear in both train and validation splits — all logistic regression evaluation uses \texttt{GroupKFold(n\_splits=10)} with \texttt{groups = transcript\_id}. This ensures no session appears in both train and validation partitions within any fold.
 
 ### 5.2 Repeated StratifiedKFold
 
