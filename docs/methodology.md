@@ -323,14 +323,14 @@ $$
 
 ### 10.2 Intervention Scheduler
 
-The `InterventionScheduler` implements a priority-based cooldown system:
+The \texttt{InterventionScheduler} implements a priority-based cooldown system:
 
 | Zone | Priority | Trigger condition |
 |---|---|---|
-| rigid-disengaged | 5 | priority ≥ 4 or urgency > 0.7 |
-| chaotic-disengaged | 4 | priority ≥ 4 or urgency > 0.7 |
-| chaotic-enmeshed | 3 | zone_change and priority ≥ 3 |
-| rigid-enmeshed | 2 | zone_change and priority ≥ 3 |
+| rigid-disengaged | 5 | priority $\geq 4$ or urgency $> 0.7$ |
+| chaotic-disengaged | 4 | priority $\geq 4$ or urgency $> 0.7$ |
+| chaotic-enmeshed | 3 | \texttt{zone\_change} and priority $\geq 3$ |
+| rigid-enmeshed | 2 | \texttt{zone\_change} and priority $\geq 3$ |
 | balanced | 1 | never triggered |
 
 A 3-step cooldown prevents intervention cascades.
