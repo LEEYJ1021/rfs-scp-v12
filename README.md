@@ -68,7 +68,7 @@ Proposed pipeline (This work):
 
 ### 2.1 Social Isolation and the Robot Family System
 
-Japan faces a pressing social challenge: over one-third of households are single-person, and chronic loneliness carries health risks equivalent to smoking up to 15 cigarettes per day (Office of the Surgeon General, 2023). The **Robot Family System (RFS)** (Hirano & Tanaka, 2025, 2026) deploys Sony toio robots as a simulated family community structured according to Olson's Circumplex Model. The present work constitutes the first systematic validation of the automated state estimation component.
+Japan faces a pressing social challenge: over one-third of households are single-person, and chronic loneliness carries health risks equivalent to smoking up to 15 cigarettes per day (Office of the Surgeon General, 2023). The **Robot Family System (RFS)** (Hirano & Tanaka, 2026) deploys Sony toio robots as a simulated family community structured according to Olson's Circumplex Model. The present work constitutes the first systematic validation of the automated state estimation component.
 
 ### 2.2 The Circumplex Model as a Design Target
 
@@ -90,7 +90,7 @@ This section documents the responses to each reviewer/collaborator concern raise
 
 **Resolution (v16.1)**:
 
-- The main script is now `src/rfs_scp_v16_main.py` and is fully committed.
+- The main script is now `src/rfs_scp_v16_main.py` and is **committed to the repository**.
 - `scripts/run_full_pipeline.sh` has been updated to point to `src/rfs_scp_v16_main.py`.
 - A `reproducibility_manifest_v16.json` is auto-generated on every run, recording library versions, random seed, AnnoMI MD5 hash, and VADER backend. This file is committed to `results/reproducibility_manifest_v16.json` as a reference fingerprint.
 
@@ -98,9 +98,9 @@ This section documents the responses to each reviewer/collaborator concern raise
 results/
 └── reproducibility_manifest_v16.json   ← committed reference run
 src/
-└── rfs_scp_v16_main.py                 ← main entry point (committed)
+└── rfs_scp_v16_main.py                 ← main entry point (committed ✓)
 scripts/
-└── run_full_pipeline.sh                ← updated path
+└── run_full_pipeline.sh                ← updated to reference rfs_scp_v16_main.py
 ```
 
 ---
@@ -212,7 +212,7 @@ The in-sample bias note is embedded in the Scorecard and in the `results/holdout
 
 **Full Response**:
 
-**The baseline weights (BASE_W) are theory-derived, not data-fit.** Their provenance is:
+**The baseline weights (BASE_W) are theory-derived, not data-fit.** Their provenance is documented in `docs/weight_provenance.md`. Summary:
 
 | Feature | Weight | Source |
 |---------|--------|--------|
@@ -300,7 +300,7 @@ The balanced zone hypothesis (cohesion 35–65, flexibility 35–65) has been va
 
 ### 4.3 CircumplexEstimator: Feature Weight Provenance
 
-**Cohesion sub-feature weights** — theory-derived from Olson (2011) and Miller & Rollnick (2012):
+**Cohesion sub-feature weights** — theory-derived from Olson (2011) and Miller & Rollnick (2012). Full provenance in `docs/weight_provenance.md`.
 
 | Feature | Weight | Literature Source |
 |---------|--------|------------------|
@@ -337,7 +337,7 @@ Olson's Communication dimension encompasses: listening skills, speaking skills, 
 
 The 1.3% clarification coverage makes the Communication score almost entirely driven by question rate and listener responses, creating collinearity with the Flexibility axis. The Communication dimension is:
 
-- **Computed** in every pipeline run (stored in `cohesion`, `flexibility`, `communication` columns of `results/annomi_session_features_v16.csv`)
+- **Computed** in every pipeline run (stored in `annomi_session_features_v16.csv`)
 - **Reported** for exploratory ANOVA (F=2.050, p=0.076)
 - **Not included** in primary hypothesis claims
 - **Planned** as primary claim once a clarification-act classifier is trained on SWBD-DAMSL and applied to AnnoMI
@@ -419,13 +419,10 @@ MCMC:        Metropolis-Hastings, logit-space, N=5,000 steps, burn-in=1,250
 Accept rate: 36.0%
 
 Dominant feature: wc_balance → PC3 (15.1% PCA variance)
-  [note: empathy_rate dominant in v12 due to temp=300 artifact; corrected in v16.1]
 
 ΔAUC [IN-SAMPLE, biased, supplementary only]: CI=[+0.021,+0.069]
 ΔAUC [HOLD-OUT, N_test=40, PRIMARY]:          CI=[+0.015,+0.126]  p=0.024
 ```
-
-The dominant feature shift from empathy (v12, artifact of temp=300) to wc_balance (v16.1, proper likelihood) is a substantive finding: the posterior correctly identifies turn balance as the most uncertain weight, consistent with its PC3 loading in the PCA collinearity audit.
 
 ### 6.4 BH-Corrected Multiple Comparisons
 
@@ -460,7 +457,7 @@ rfs-scp-v16/
 │       └── AnnoMI-simple.csv              ← Fallback subset
 │
 ├── src/
-│   ├── rfs_scp_v16_main.py                ← MAIN ENTRY POINT (committed v16.1) ✓
+│   ├── rfs_scp_v16_main.py                ← MAIN ENTRY POINT (committed ✓)
 │   ├── validate_concerns.py               ← Standalone concern validation script ✓ NEW
 │   ├── eda/
 │   │   └── annomi_eda.py
@@ -484,23 +481,23 @@ rfs-scp-v16/
 │   └── run_validation.sh                  ← NEW: runs validate_concerns.py
 │
 ├── figures/                               ← Generated by pipeline (8 panels, v16.1)
-│   ├── fig1_rq1_v16.png                   ← Discrimination + ROC + Calibration + DCA
-│   ├── fig2_rq2_v16.png                   ← Moderation + VIF
-│   ├── fig3_rq4_bayesian_v16.png          ← MCMC posterior + ΔAUC + PCA scree
-│   ├── fig4_rq5_ablation_v16.png          ← Interpretability premium
-│   ├── fig5_shap_lofo_v16.png             ← SHAP + LOFO + SHAP-LOFO correlation
-│   ├── fig6_rq3_clusters_v16.png          ← Topic clusters [Comm: FUTURE WORK]
-│   ├── fig7_dynamics_umap_v16.png         ← UMAP + temporal dynamics
-│   └── fig8_power_scorecard_v16.png       ← Power curve + full scorecard
+│   ├── fig1_rq1_v16.png
+│   ├── fig2_rq2_v16.png
+│   ├── fig3_rq4_bayesian_v16.png
+│   ├── fig4_rq5_ablation_v16.png
+│   ├── fig5_shap_lofo_v16.png
+│   ├── fig6_rq3_clusters_v16.png
+│   ├── fig7_dynamics_umap_v16.png
+│   └── fig8_power_scorecard_v16.png
 │
 ├── results/                               ← Generated CSV/JSON outputs
-│   ├── annomi_session_features_v16.csv    ← Per-session features + estimates
-│   ├── hypothesis_summary_v16.csv         ← RQ verdicts + details
+│   ├── annomi_session_features_v16.csv
+│   ├── hypothesis_summary_v16.csv
 │   ├── holdout_weight_sensitivity_v16.csv ← Theory vs. learned weight gaps ⚠
-│   ├── holdout_w_learned_v16.csv          ← Learned weight vector
-│   ├── lofo_results_v16.csv               ← LOFO drop per feature + CI
-│   ├── regex_coverage_audit_v16.csv       ← Communication proxy coverage
-│   ├── rfs_controller_log_v16.csv         ← Per-session RFS decisions
+│   ├── holdout_w_learned_v16.csv
+│   ├── lofo_results_v16.csv
+│   ├── regex_coverage_audit_v16.csv
+│   ├── rfs_controller_log_v16.csv
 │   ├── shap_linear_v16.csv
 │   ├── shap_permutation_v16.csv
 │   └── reproducibility_manifest_v16.json  ← Library versions + AnnoMI MD5 ✓
@@ -598,11 +595,12 @@ This script independently verifies:
 - MCMC has no temperature constant
 - Hold-out gaps are within reported bounds
 - Communication coverage matches documented threshold
+- `src/rfs_scp_v16_main.py` is present and committed
 
 ### EDA Only
 
 ```bash
-python src/eda/annomi_eda.py --annomi-dir data/annomi
+bash scripts/run_eda.sh --annomi-dir data/annomi
 ```
 
 ---
@@ -651,6 +649,7 @@ All outputs are written to `results/` (or the path set by `RFS_OUT_v16` environm
 | **v16-FIX-2** | Communication axis demoted to **[FUTURE WORK]**: coverage audit (1.3%), all labels/figures/scorecard updated; BH table distinguishes PRIMARY / FUTURE WORK / SECONDARY |
 | **v16-FIX-3** | AUC floor `≥0.55` with Tanana et al. (2016) citation embedded in code constant, disclaimer, all figure titles |
 | **v16-FIX-4** | Surrogate framing unified: all "3-axis" references updated; `SURROGATE_DISCLAIMER` added to startup banner |
+| **Commit fix** | `src/rfs_scp_v16_main.py` committed; `scripts/run_full_pipeline.sh` updated to reference it |
 
 ### v16.0 — Core Architecture Fixes
 
@@ -716,7 +715,7 @@ All outputs are written to `results/` (or the path set by `RFS_OUT_v16` environm
 | Chaotic-Disengaged | STABILIZE | structure_build | 4 |
 | Chaotic-Enmeshed | MODERATE | boundary_set | 3 |
 
-Bayesian-updated empathy weight (v16.1): **w_empathy = 0.210** (prior MCMC used proper likelihood; cf. v12.0's artifact value of 0.925 driven by `temp=300`).
+Bayesian-updated empathy weight (v16.1): **w_empathy = 0.210** (proper Bernoulli likelihood; cf. v12.0's artifact value of 0.925 driven by `temp=300`).
 
 Validation: urgency–MI correlation **r=0.350, p<0.001**.
 
@@ -756,7 +755,7 @@ Validation: urgency–MI correlation **r=0.350, p<0.001**.
 - Amrhein, P. C., Miller, W. R., Yahne, C. E., Palmer, M., & Fulcher, L. (2003). Client commitment language during motivational interviewing predicts drug use outcomes. *Journal of Consulting and Clinical Psychology, 71*(5), 862–878.
 - Gottman, J. M. (1994). *What Predicts Divorce? The Relationship Between Marital Processes and Marital Outcomes*. Lawrence Erlbaum Associates.
 - Hirano, T. & Tanaka, F. (2026). Dialogue generation for family robots using ROS and generative AI. *Proc. IEEE/SICE SII 2026*.
-- Hirano, T. & Tanaka, F. (2025). Toward the development of the Robot Family System (RFS): Implementing a Circumplex Model with generative AI. *Japanese Domestic Conference*.
+- Hirano, T. & Tanaka, F. (2026). Toward the development of the Robot Family System (RFS): Implementing a Circumplex Model with generative AI. *Proc. JSAI 2026 (Japanese Domestic Conference)*.
 - Jurafsky, D., Shriberg, E., & Biasca, D. (1997). Switchboard SWBD-DAMSL shallow-discourse-function annotation coders manual. *University of Colorado Technical Report 97-02*.
 - Miller, W. R. & Rollnick, S. (2012). *Motivational Interviewing: Helping People Change* (3rd ed.). Guilford Press.
 - Office of the Surgeon General. (2023). *Our Epidemic of Loneliness and Isolation*. U.S. Department of Health and Human Services.
