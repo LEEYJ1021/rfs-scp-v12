@@ -1,0 +1,37 @@
+name: rfs-scp
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+
+  # ── Core scientific stack ───────────────────────────────────────────────
+  - numpy>=1.24
+  - pandas>=2.0
+  - scipy>=1.11
+
+  # ── Machine learning ────────────────────────────────────────────────────
+  - scikit-learn>=1.3
+  - statsmodels>=0.14
+  - imbalanced-learn>=0.11
+
+  # ── Deep learning (CUDA 12; adjust channel/version for your GPU) ────────
+  - pytorch>=2.0
+  - pytorch-cuda=12.1
+
+  # ── Dimensionality reduction ────────────────────────────────────────────
+  - umap-learn>=0.5
+
+  # ── Visualisation ───────────────────────────────────────────────────────
+  - matplotlib>=3.7
+
+  # ── Utilities ──────────────────────────────────────────────────────────
+  - tqdm>=4.65
+
+  # ── pip-only packages ──────────────────────────────────────────────────
+  - pip:
+    - vaderSentiment>=3.3.2   # MANDATORY — no conda package; pip only

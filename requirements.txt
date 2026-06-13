@@ -1,0 +1,28 @@
+# RFS-SCP v16.1 — Python dependencies
+# Install: pip install -r requirements.txt
+
+# ── Core scientific stack ─────────────────────────────────────────────────
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.11.0
+
+# ── Machine learning ──────────────────────────────────────────────────────
+scikit-learn>=1.3.0
+statsmodels>=0.14.0
+imbalanced-learn>=0.11.0   # optional; SMOTE sensitivity analysis
+
+# ── Deep learning (optional; Ridge fallback if absent) ───────────────────
+# torch>=2.0.0             # install separately via pytorch.org for your CUDA version
+
+# ── NLP / sentiment ───────────────────────────────────────────────────────
+vaderSentiment>=3.3.2      # MANDATORY — pipeline raises RuntimeError if absent
+
+# ── Dimensionality reduction ──────────────────────────────────────────────
+umap-learn>=0.5.3          # optional; t-SNE fallback if absent
+
+# ── Visualisation ────────────────────────────────────────────────────────
+matplotlib>=3.7.0          # >=3.9 preferred for native tick_labels kwarg
+                           # compatibility wrapper included for >=3.7
+
+# ── Utilities ─────────────────────────────────────────────────────────────
+tqdm>=4.65.0
