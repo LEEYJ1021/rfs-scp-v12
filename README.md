@@ -733,7 +733,24 @@ Validation: urgency–MI correlation **r=0.350, p<0.001**.
 
 ---
 
-## 15. References
+## 15. Citation
+
+```bibtex
+@software{rfs_scp_v16,
+  title   = {{RFS-SCP v16.1}: Circumplex-Grounded Relational State Estimation
+             for Robot Family System Design},
+  author  = {[Author]},
+  year    = {2025},
+  url     = {https://github.com/<your-username>/rfs-scp-v16},
+  note    = {Surrogate validation on AnnoMI (Wu et al., 2022).
+             Primary axes: Cohesion + Flexibility.
+             Communication axis: future work (coverage 1.3\%).}
+}
+```
+
+---
+
+## 16. References
 
 - Amrhein, P. C., Miller, W. R., Yahne, C. E., Palmer, M., & Fulcher, L. (2003). Client commitment language during motivational interviewing predicts drug use outcomes. *Journal of Consulting and Clinical Psychology, 71*(5), 862–878.
 - Gottman, J. M. (1994). *What Predicts Divorce? The Relationship Between Marital Processes and Marital Outcomes*. Lawrence Erlbaum Associates.
