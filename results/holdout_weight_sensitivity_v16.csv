@@ -1,0 +1,2 @@
+w_diff,auc_theory_train,auc_theory_test,auc_learned_train,auc_learned_test,gap,theory_gap,l2_lambda,n_train,n_test,both_gaps_flagged,limitation_note
+1.2786271826925846,0.8969155844155844,0.6060606060606061,0.9078733766233766,0.7532467532467534,0.15462662337662325,0.2908549783549783,0.5,93,40,True,Both theory (gap=+0.2909) and learned (gap=+0.1546) weights show train-test instability on N=133. Theory weights preferred on parsimony grounds only. Weight-space is under-identified; N≥300 recommended for stable learning.
